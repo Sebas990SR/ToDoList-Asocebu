@@ -1,0 +1,108 @@
+<app-pantalla-espera></app-pantalla-espera>
+<div class="w-100 mt-3 text-start">
+  <button class="btn bg-boton-3 text-light m-2" (click)="volver()">
+    <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp;&nbsp;Volver
+  </button>
+</div>
+
+<br><br>
+
+<label class="fs-22 fw-bold">
+  Tareas Registradas:
+</label>
+<br><br>
+
+<div class="mt-3" *ngIf="rerender">
+  <label class="fs-16 text-center"
+    *ngIf="tareas == null || tareas.length == 0">
+    No hay tareas creadas, diríjase al módulo "Crear tarea".
+  </label>
+
+  <div *ngIf="tareas.length >= 1">
+    <div class="card card-servicios m-2" *ngFor="let tarea of tareas; index as i">
+
+      <div class="btn-flotante">
+
+        <div class="boton-flotante">
+
+            <button type="button" class="btn bg-boton-4 align-items-center justify-content-start text-light"
+            matTooltip="Marcar tarea como pendiente" (click)="openModal2(tarea.id, true, i)" *ngIf="tarea.isCompleted">
+            <fa-icon [icon]="faXmark"></fa-icon>
+          </button>
+          
+          <button type="button" class="btn bg-boton-2 align-items-center justify-content-start text-light"
+            matTooltip="Marcar tarea como completada" (click)="openModal2(tarea.id, false, i)" *ngIf="!tarea.isCompleted">
+            <fa-icon [icon]="faCheck"></fa-icon>
+          </button>
+          &nbsp;
+          <button type="button" class="btn bg-boton-3 align-items-center justify-content-start text-light"
+            matTooltip="Eliminar tarea" (click)="openModal(tarea.id)">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button>
+
+        </div>
+
+        <div class="card-body text-start">
+          <label class="fs-16 bg-boton-2 estado" *ngIf="tarea.isCompleted"><b>{{tarea.titulo}} -> Completada</b></label>
+          <label class="fs-16 bg-boton-4 estado" *ngIf="!tarea.isCompleted"><b>{{tarea.titulo}} -> Pendiente</b></label>
+
+          <br>
+          <br>
+
+          <label><b>Descripción:</b></label>
+          <br>
+          <label>
+            &nbsp;{{tarea.descripcion}}
+          </label>
+          <br>
+
+        </div>
+
+      </div>
+    </div>
+
+    <br><br><br>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modalAlerta" aria-hidden="true" aria-labelledby="modalAlertaLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h1 class="modal-title letrabotones fs-5" id="exampleModalToggleLabel">Alerta!&nbsp;<fa-icon [icon]="faTriangleExclamation"></fa-icon></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label>¿Está seguro que desea eliminar esta tarea?</label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-boton-2 text-light" data-bs-target="#modalAlerta" data-bs-dismiss="modal"
+          data-bs-toggle="modal" aria-label="Close" (click)="eliminarTarea()">&nbsp;Si, eliminar</button>
+        <button type="button" class="btn bg-boton-3 text-light" data-bs-target="#modalAlerta" data-bs-dismiss="modal"
+          data-bs-toggle="modal" aria-label="Close">&nbsp;Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalEdicion" aria-hidden="true" aria-labelledby="modalEdicionLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h1 class="modal-title letrabotones fs-5" id="exampleModalToggleLabel">Alerta!&nbsp;<fa-icon [icon]="faTriangleExclamation"></fa-icon></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label *ngIf="!bandera">¿Está seguro que desea marcar esta tarea como <b>COMPLETADA</b>?</label>
+        <label *ngIf="bandera">¿Está seguro que desea marcar esta tarea como <b>NO COMPLETADA</b>?</label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-boton-2 text-light" data-bs-target="#modalEdicion" data-bs-dismiss="modal"
+          data-bs-toggle="modal" aria-label="Close" (click)="editarTarea()">&nbsp;Si, confirmar</button>
+        <button type="button" class="btn bg-boton-3 text-light" data-bs-target="#modalEdicion" data-bs-dismiss="modal"
+          data-bs-toggle="modal" aria-label="Close">&nbsp;Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

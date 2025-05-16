@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 90%;
+}
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container-inicio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  margin: 5%;
+}
+
+.contenido-creacion {
+  height: 100%;
+  margin: 5%;
+}
+
+.contenido-listado {
+  text-align: center;
+  height: 100%;
+  margin: 5%;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+.fs-16 {
+  font-size: 16px;
+}
+.fs-18 {
+  font-size: 18px;
+}
+.fs-20 {
+  font-size: 20px;
+}
+.fs-22 {
+  font-size: 22px;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
+.bg-boton-1 {
+  background-color: #1d6d80 !important;
+}
+
+.text-boton-1 {
+  color: #1d6d80 !important;
+}
+
+.bg-boton-2 {
+  background-color: #1d8348 !important;
+}
+
+.text-boton-2 {
+  color: #1d8348 !important;
+}
+
+.bg-boton-3 {
+  background-color: #e74c3c !important;
+}
+
+.text-boton-3 {
+  color: #e74c3c !important;
+}
+
+.bg-boton-4 {
+  background-color: #e67e22 !important;
+}
+
+.text-boton-4 {
+  color: #e67e22 !important;
+}
+
+.btnnn:disabled {
+  border: none !important;
+}
+
+.btn-flotante{
+  display: flex;
+}
+
+.boton-flotante{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.estado{
+  border-radius: 5px;
+  padding: 3px;
+}

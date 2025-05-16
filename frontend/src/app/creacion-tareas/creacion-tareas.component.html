@@ -1,0 +1,77 @@
+<app-pantalla-espera></app-pantalla-espera>
+
+<div class="w-100 mt-3 text-start">
+  <button class="btn bg-boton-3 text-light m-2" (click)="volver()">
+    <fa-icon [icon]="faArrowLeft"></fa-icon>&nbsp;&nbsp;Volver
+  </button>
+</div>
+
+<br><br>
+
+<label class="fs-22 fw-bold">
+  Formulario de creación de tareas
+</label>
+<br><br>
+<label class="fs-16">
+  Por favor, ingrese la siguiente información:
+</label>
+<br><br>
+
+<form [formGroup]="formularioTarea">
+  <div class="row">
+
+    <div class="col-lg-6 mt-3">
+
+      <label class="h6">Título de la tarea
+        &nbsp;
+        <span *ngIf="!t['titulo'].valid"><fa-icon [icon]="faTimes" class="text-danger"></fa-icon></span>
+        <span *ngIf="t['titulo'].valid"><fa-icon [icon]="faCheck" class="text-success"></fa-icon></span>
+      </label>
+
+      <input formControlName="titulo" class="form-control text-start" type="text" maxlength="200"
+        placeholder="Ingrese el título de la tarea" (input)="validarFormularioTarea()" />
+
+    </div>
+
+    <div class="col-lg-6 mt-3">
+
+      <label class="h6">Descripción
+        &nbsp;
+        <span *ngIf="!t['descripcion'].valid"><fa-icon [icon]="faTimes" class="text-danger"></fa-icon></span>
+        <span *ngIf="t['descripcion'].valid"><fa-icon [icon]="faCheck" class="text-success"></fa-icon></span>
+      </label>
+
+      <input formControlName="descripcion" class="form-control" type="text" maxlength="200" (input)="validarFormularioTarea()" />
+
+    </div>
+
+  </div>
+
+  <br>
+  <div class="w-100 mt-3 text-center">
+    <button class="btn bg-boton-2 text-light m-2" (click)="openModal()" [disabled]="!habilitarGuardarTarea">
+      <fa-icon [icon]="faFloppyDisk"></fa-icon>&nbsp;&nbsp;Guardar tarea
+    </button>
+  </div>
+
+</form>
+
+<div class="modal fade" id="modalAlerta" aria-hidden="true" aria-labelledby="modalAlertaLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h1 class="modal-title letrabotones fs-5" id="exampleModalToggleLabel">Alerta!&nbsp;<fa-icon [icon]="faTriangleExclamation"></fa-icon></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label>¿Está seguro que desea registrar esta tarea?</label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-boton-2 text-light" data-bs-target="#modalAlerta" data-bs-dismiss="modal"
+          data-bs-toggle="modal" aria-label="Close" (click)="guardarTarea()">&nbsp;Si, continuar</button>
+        <button type="button" class="btn bg-boton-3 text-light" data-bs-target="#modalAlerta" data-bs-dismiss="modal"
+          data-bs-toggle="modal" aria-label="Close">&nbsp;Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

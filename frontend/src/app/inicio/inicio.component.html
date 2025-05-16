@@ -1,0 +1,40 @@
+<app-pantalla-espera></app-pantalla-espera>
+
+<div class="container-inicio" *ngIf="modules[0]">
+  <div class="contenido">
+    <label class="fs-22 fw-bold">
+      To Do List
+    </label>
+    <br>
+    <br />
+    <label class="fs-18">
+      <b>Prueba técnica Asocebú</b>
+    </label>
+    <br>
+    <label class="fs-16">
+      Realizado por: <b>Sebastian Andres Rivera Martinez</b>
+    </label>
+
+    <br>
+    <br>
+
+    <button class="btn bg-boton-2 text-light m-2" (click)="abrirModulo(1)">
+      <fa-icon [icon]="faPlus"></fa-icon>&nbsp;&nbsp;Crear tarea
+    </button>
+    &nbsp;&nbsp;
+    <button class="btn bg-boton-1 text-light m-2" (click)="abrirModulo(2)">
+      <fa-icon [icon]="faList"></fa-icon>&nbsp;&nbsp;Listado de tareas
+    </button>
+  </div>
+
+</div>
+
+<div class="contenido-creacion" *ngIf="modules[1]">
+  <app-creacion-tareas
+    (desplegarMenuPrincipal)="abrirModulo(0, false)" (desplegarListaTareas)="abrirModulo(2); reiniciarValores()"
+    *ngIf="modules[1]"></app-creacion-tareas>
+</div>
+
+<div class="contenido-listado" *ngIf="modules[2]">
+  <app-listado-tareas (desplegarMenuPrincipal)="abrirModulo(0, false)"></app-listado-tareas>
+</div>
